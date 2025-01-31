@@ -219,6 +219,8 @@ Below are examples of each part of the config, and how you would clone a repo
 for each ssh key:
 
 2. Personal ssh key (GitHub)
+
+> Config:
 > ```conf
 > Host github.com
 >   Hostname github.com
@@ -227,11 +229,14 @@ for each ssh key:
 >   IdentitiesOnly yes
 > ```
 >
+> Git clone:
 > ```bash
 > git clone git@work.github.com:work-profile/repo.git
 > ```
 
 2. Work ssh key (GitHub)
+
+> Config: 
 > ```conf
 > Host work.github.com
 >   Hostname github.com
@@ -240,11 +245,14 @@ for each ssh key:
 >   IdentitiesOnly yes
 > ```
 >
+> Git clone:
 > ```bash
 > git clone git@work.github.com:work-profile/repo.git
 > ```
 
 3. Work ssh key (GitLab)
+
+> Config: 
 > ```conf
 > Host work.gitlab.com
 >   Hostname gitlab.com
@@ -253,6 +261,7 @@ for each ssh key:
 >   IdentitiesOnly yes
 >```
 > 
+> Git clone:
 > ```bash
 > git clone git@work.gitlab.com:work-profile/repo.git
 > ```
