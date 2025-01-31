@@ -218,7 +218,7 @@ to change up the URL just a bit.
 Below are examples of each part of the config, and how you would clone a repo 
 for each ssh key:
 
-2. Personal ssh key (GitHub)
+1. Personal ssh key (GitHub)
 
 > Config:
 > ```conf
