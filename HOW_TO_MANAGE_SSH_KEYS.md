@@ -88,7 +88,7 @@ location of that key, you will need a ssh config to fix some issues you will hav
 
 2. Open config and copy the example:
 
-> ```config
+> ```conf
 > Host github.com
 >   Hostname github.com
 >   User git
