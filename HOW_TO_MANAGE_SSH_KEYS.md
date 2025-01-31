@@ -25,12 +25,14 @@ direction.*
 First thing we need to know is how we can create SSH keys that we can use to 
 link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 
-1. Paste the text in your terminal, but change the email in the quotes to yours.
+1. Generate a key
 
 > ```bash
 > ssh-keygen -t ed25519 -C "your_email@example.com"
 > ```
 > 
+> Make sure you change the email inside the quotes to an email of yours.
+>
 > This will generate a key using the ed25519 encryption algorithm, and uses the 
 > provided email as a label so you can easily identify it. You can change the 
 > algorithm you would like to use to encrypt your key, but GitHub recommends using 
@@ -68,4 +70,51 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 > They put this in their .bashrc to automate it when you first boot up your machine, 
 > but I have never done it myself so I can't speak on it.*
 
+# Setting Up Your SSH Config
+
+This is the most important part when it comes to managing multiple keys. Your ssh
+config will tell your ssh client where it should be looking for your ssh keys, and 
+which key it should be using.
+
+If you have multiple ssh keys, or if you have a single key and changed the name or 
+location of that key, you will need a ssh config to fix some issues you will have.
+
+1. Create an ssh config file
+
+> Move to your ssh directory and create a config file
+> ```bash
+> cd ~/.ssh && touch config
+> ```
+
+2. Open config and copy the example:
+
+> ```config
+> Host github.com
+>   Hostname github.com
+>   User git
+>   IdentityFile ~/.ssh/[your_personal_ssh_key]
+>   IdentitiesOnly yes
+>  
+> Host work.github.com
+>   Hostname github.com
+>   User git
+>   IdentityFile ~/.ssh/[your_work_ssh_key_file]
+>   IdentitiesOnly yes
+> 
+> Host work.gitlab.com
+>   Hostname gitlab.com
+>   User git
+>   IdentityFile ~/.ssh/[your_work_gitlab_ssh_key_file]
+>   IdentitiesOnly yes
+>```
+>
+> Make sure you change up the file to work for you. Host can be anything you want 
+> (it should easily identify what host you are using and what work you are doing).
+> Hostname should always be the website you are connecting to. Identity file should 
+> point to the ssh key you are going to use. 
+> 
+> In the `Cloning a Repo` Section, it should make sense how we can connect different repos to different 
+> keys. It is very important to realize that this ssh config file is telling your 
+> ssh client which key it should be looking for every time its setting up a 
+> connection from a certain host.
 
