@@ -70,7 +70,7 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 > keys. They put this in their .bashrc to automate it when you first boot up 
 > your machine, but I have never done it myself so I can't speak on it.*
 
-# Setting Up Your SSH Config
+## Setting Up Your SSH Config
 
 This is the most important part when it comes to managing multiple keys. Your 
 ssh config will tell your ssh client where it should be looking for your ssh 
@@ -209,4 +209,58 @@ Here are some links that tell you how you can test your ssh connection:
 - [Test your SSH connection with GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 - [Test your SSH connection with GitLab](https://docs.gitlab.com/ee/user/ssh.html#verify-that-you-can-connect)
 
+## Clone Your Repo
 
+This is where our config will start to make sense. When you usually clone your 
+repo to your machine locally, you can just copy the ssh URL. Well now we have 
+to change up the URL just a bit. 
+
+Below are examples of each part of the config, and how you would clone a repo 
+for each ssh key:
+
+2. Personal ssh key (GitHub)
+> ```conf
+> Host github.com
+>   Hostname github.com
+>   User git
+>   IdentityFile ~/.ssh/[your_ssh_key_file]
+>   IdentitiesOnly yes
+> ```
+>
+> ```bash
+> git clone git@work.github.com:work-profile/repo.git
+> ```
+
+2. Work ssh key (GitHub)
+> ```conf
+> Host work.github.com
+>   Hostname github.com
+>   User git
+>   IdentityFile ~/.ssh/[your_work_ssh_key_file]
+>   IdentitiesOnly yes
+> ```
+>
+> ```bash
+> git clone git@work.github.com:work-profile/repo.git
+> ```
+
+3. Work ssh key (GitLab)
+> ```conf
+> Host work.gitlab.com
+>   Hostname gitlab.com
+>   User git
+>   IdentityFile ~/.ssh/[your_work_gitlab_ssh_key_file]
+>   IdentitiesOnly yes
+>```
+> 
+> ```bash
+> git clone git@work.gitlab.com:work-profile/repo.git
+> ```
+
+## Summary
+
+It is actually suprisingly easy to get this all set up. You create your ssh 
+key, set up an ssh config, connect your public key to the host, and clone your 
+repo. If there are any concepts I didn't really touch up on, there are tons of 
+great resources that go much more in depth than I did. The intention of this 
+was to get you a quick way to get your ssh keys set up in a simple way.
