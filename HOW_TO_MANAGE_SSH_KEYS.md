@@ -1,4 +1,4 @@
-# Managing Multiple SSH Keys for Github and Gitlab
+# Managing Multiple SSH Keys for GitHub and GitLab
 
 ## Motivation
 
