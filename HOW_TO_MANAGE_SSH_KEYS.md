@@ -201,7 +201,7 @@ value.
 
 11. Select **Add key**.
 
-*** Test Your SSH Connection
+### Test Your SSH Connection
 
 You should test your ssh connection before trying to clone your repository. 
 Here are some links that tell you how you can test your ssh connection:
