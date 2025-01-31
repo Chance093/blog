@@ -14,5 +14,10 @@ with each other. It wasn't easy to get all my answers, and I needed to look into
 a lot of different sources. So I decided to share what I learned about how all 
 of this works.
 
+*Note: The environment I am working in is Windows with WSL. Everything I have 
+listed here should work with Linux, and Windows if you either have Git Bash or 
+WSL. As for Mac, some of the sources I link should point you in the right 
+direction.*
+
 ## Creating SSH Keys
 
