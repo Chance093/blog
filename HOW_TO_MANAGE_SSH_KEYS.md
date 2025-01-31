@@ -35,8 +35,8 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 >
 > This will generate a key using the ed25519 encryption algorithm, and uses the 
 > provided email as a label so you can easily identify it. You can change the 
-> algorithm you would like to use to encrypt your key, but GitHub recommends using 
-> this one. 
+> algorithm you would like to use to encrypt your key, but GitHub recommends 
+> using this one. 
 
 2. Enter the file in which you would like to store your key
 
@@ -56,28 +56,29 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 > > Enter same passphrase again: [Type passphrase again]
 > ```
 > 
-> Using a passphrase is an extra layer of protection for your SSH keys. If someone
-> ever gets access to your private key, they have access to your stuff. The 
-> passphrase prevents this from happening!
+> Using a passphrase is an extra layer of protection for your SSH keys. If 
+> someone ever gets access to your private key, they have access to your stuff. 
+> The passphrase prevents this from happening!
 > 
-> If you decide to use a passphrase, you will always be asked what that passphrase
-> is everytime you do a pull or push to your remote repository. There is a way to 
-> avoid this by using keychains. If you would like to know more about this, here is 
-> a link to get more info: [Ubuntu / Debian Linux Install Keychain SSH Key Manager 
-> For OpenSSH](https://www.cyberciti.biz/faq/ubuntu-debian-linux-server-install-keychain-apt-get-command/)
+> If you decide to use a passphrase, you will always be asked what that 
+> passphrase is everytime you do a pull or push to your remote repository. There 
+> is a way to avoid this by using keychains. If you would like to know more 
+> about this, here is a link to get more info: [Ubuntu / Debian Linux Install 
+> Keychain SSH Key Manager For OpenSSH](https://www.cyberciti.biz/faq/ubuntu-debian-linux-server-install-keychain-apt-get-command/)
 > 
-> *Note: I have seen this also solved by using ssh-agent to add all of your keys. 
-> They put this in their .bashrc to automate it when you first boot up your machine, 
-> but I have never done it myself so I can't speak on it.*
+> *Note: I have seen this also solved by using ssh-agent to add all of your 
+> keys. They put this in their .bashrc to automate it when you first boot up 
+> your machine, but I have never done it myself so I can't speak on it.*
 
 # Setting Up Your SSH Config
 
-This is the most important part when it comes to managing multiple keys. Your ssh
-config will tell your ssh client where it should be looking for your ssh keys, and 
-which key it should be using.
+This is the most important part when it comes to managing multiple keys. Your 
+ssh config will tell your ssh client where it should be looking for your ssh 
+keys, and which key it should be using.
 
-If you have multiple ssh keys, or if you have a single key and changed the name or 
-location of that key, you will need a ssh config to fix some issues you will have.
+If you have multiple ssh keys, or if you have a single key and changed the name 
+or location of that key, you will need a ssh config to fix some issues you will 
+have.
 
 1. Create an ssh config file
 
@@ -108,13 +109,104 @@ location of that key, you will need a ssh config to fix some issues you will hav
 >   IdentitiesOnly yes
 >```
 >
-> Make sure you change up the file to work for you. Host can be anything you want 
-> (it should easily identify what host you are using and what work you are doing).
-> Hostname should always be the website you are connecting to. Identity file should 
-> point to the ssh key you are going to use. 
+> Make sure you change up the file to work for you. Host can be anything you 
+> want (it should easily identify what host you are using and what work you are 
+> doing). Hostname should always be the website you are connecting to. Identity 
+> file should point to the ssh key you are going to use. 
 > 
-> In the `Cloning a Repo` Section, it should make sense how we can connect different repos to different 
-> keys. It is very important to realize that this ssh config file is telling your 
-> ssh client which key it should be looking for every time its setting up a 
-> connection from a certain host.
+> In the `Cloning a Repo` Section, it should make sense how we can connect 
+> different repos to different keys. It is very important to realize that this 
+> ssh config file is telling your ssh client which key it should be looking for 
+> every time its setting up a connection from a certain host.
+
+## Connecting Your SSH Keys
+
+You will need to add your public key to the host you are trying to connect to 
+(Github/GitLab). This allows the host to connect with your machine through ssh 
+in a very secure way. Connecting your ssh key is very simple.
+
+### GitHub SSH Connection
+
+1. Copy the SSH key to your clipboard
+
+> You will need to copy your public key (NOT YOUR PRIVATE KEY!). Copy the 
+> example code, and make sure to point to the correct public key.
+> 
+> **Linux**
+> ```bash
+> xclip -sel clip < ~/.ssh/id_ed25519.pub
+> ```
+> 
+> **Git Bash on Windows**
+> ```bash
+> cat ~/.ssh/id_ed25519.pub | clip
+> ```
+
+2. In the upper-right corner of any page on GitHub, click your profile photo, 
+then click **Settings**.
+
+3. In the "Access" section of the sidebar, click **SSH and GPG keys**.
+
+4. Click **New SSH key** or **Add SSH key**.
+
+5. In the **Title** field, add a descriptive label for the new key. For example, 
+if you're using a home desktop, you could call this key "Home Desktop".
+
+6. Select the type of key, either authentication or signing. I always just 
+choose authentication which is the default.
+
+7. In the **Key** field, paste your public key.
+
+8. Click **Add SSH key**.
+
+9. If prompted, confirm access to your account on GitHub.
+
+### GitLab SSH Connection
+
+1. Copy the SSH key to your clipboard
+
+> You will need to copy your public key (NOT YOUR PRIVATE KEY!). Copy the 
+> example code, and make sure to point to the correct public key.
+> 
+> **Linux**
+> ```bash
+> xclip -sel clip < ~/.ssh/id_ed25519.pub
+> ```
+> 
+> **Git Bash on Windows**
+> ```bash
+> cat ~/.ssh/id_ed25519.pub | clip
+> ```
+
+2. Sign in to GitLab.
+
+3. On the left sidebar, select your avatar.
+
+4. Select **Edit profile**.
+
+5. On the left sidebar, select **SSH Keys**.
+
+6. Select **Add new key**.
+
+7. In the **Key** field, paste your public key.
+
+8. In the **Title** field, add a descriptive label for the new key. For example, 
+if you're using a home desktop, you could call this key "Home Desktop".
+
+9. Optional. Select the **Usage type** of the key. It can be used either for 
+Authentication or Signing or both. Authentication & Signing is the default 
+value.
+
+10. Optional. Update **Expiration date** to modify the default expiration date.
+
+11. Select **Add key**.
+
+*** Test Your SSH Connection
+
+You should test your ssh connection before trying to clone your repository. 
+Here are some links that tell you how you can test your ssh connection:
+
+- [Test your SSH connection with GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+- [Test your SSH connection with GitLab](https://docs.gitlab.com/ee/user/ssh.html#verify-that-you-can-connect)
+
 
