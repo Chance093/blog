@@ -47,7 +47,9 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 > Pressing enter will save the file in the default location: `~/.ssh/id_ed25519`.
 > 
 > I recommend naming the file something easily identifiable like `id_ed25519_work_github`,
-> especially if you plan on having multiple SSH keys on one machine.
+> especially if you plan on having multiple SSH keys on one machine. It is 
+> common for people to prepend their file names with id and the algorithm they 
+> are using.
 
 3. Enter a passphrase (Optional)
 
@@ -93,26 +95,26 @@ have.
 > Host github.com
 >   Hostname github.com
 >   User git
->   IdentityFile ~/.ssh/[your_personal_ssh_key]
+>   IdentityFile ~/.ssh/id_ed25519_personal
 >   IdentitiesOnly yes
 >  
 > Host work.github.com
 >   Hostname github.com
 >   User git
->   IdentityFile ~/.ssh/[your_work_ssh_key_file]
+>   IdentityFile ~/.ssh/id_ed25519_work
 >   IdentitiesOnly yes
 > 
 > Host work.gitlab.com
 >   Hostname gitlab.com
 >   User git
->   IdentityFile ~/.ssh/[your_work_gitlab_ssh_key_file]
+>   IdentityFile ~/.ssh/id_ed25519_work_gitlab
 >   IdentitiesOnly yes
 >```
 >
 > Make sure you change up the file to work for you. Host can be anything you 
 > want (it should easily identify what host you are using and what work you are 
 > doing). Hostname should always be the website you are connecting to. Identity 
-> file should point to the ssh key you are going to use. 
+> file should point to the ssh private key file name you are going to use.
 > 
 > In the `Cloning a Repo` Section, it should make sense how we can connect 
 > different repos to different keys. It is very important to realize that this 
@@ -225,13 +227,13 @@ for each ssh key:
 > Host github.com
 >   Hostname github.com
 >   User git
->   IdentityFile ~/.ssh/[your_ssh_key_file]
+>   IdentityFile ~/.ssh/id_ed25519_personal
 >   IdentitiesOnly yes
 > ```
 >
 > Git clone:
 > ```bash
-> git clone git@work.github.com:work-profile/repo.git
+> git clone git@github.com:work-profile/repo.git
 > ```
 
 2. Work ssh key (GitHub)
@@ -241,7 +243,7 @@ for each ssh key:
 > Host work.github.com
 >   Hostname github.com
 >   User git
->   IdentityFile ~/.ssh/[your_work_ssh_key_file]
+>   IdentityFile ~/.ssh/id_ed25519_work
 >   IdentitiesOnly yes
 > ```
 >
@@ -257,7 +259,7 @@ for each ssh key:
 > Host work.gitlab.com
 >   Hostname gitlab.com
 >   User git
->   IdentityFile ~/.ssh/[your_work_gitlab_ssh_key_file]
+>   IdentityFile ~/.ssh/id_ed25519_work_gitlab
 >   IdentitiesOnly yes
 >```
 > 
