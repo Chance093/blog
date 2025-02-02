@@ -3,7 +3,7 @@
 ## Motivation
 
 Up until now, I have not needed to manage multiple SSH keys on a single machine. 
-I have always used one SSH key for my personal github account, which my job has
+I have always used one SSH key for my personal GitHub account, which my job has
 allowed me to use when working on the company repo. Recently, we had to move 
 the repo over to GitLab. Also, we started another project on GitHub which now 
 can only be accessed by my company account. So now I have my personal GitHub 
@@ -63,7 +63,7 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 > The passphrase prevents this from happening!
 > 
 > If you decide to use a passphrase, you will always be asked what that 
-> passphrase is everytime you do a pull or push to your remote repository. There 
+> passphrase is every time you do a pull or push to your remote repository. There 
 > is a way to avoid this by using keychains. If you would like to know more 
 > about this, here is a link to get more info: [Ubuntu / Debian Linux Install 
 > Keychain SSH Key Manager For OpenSSH](https://www.cyberciti.biz/faq/ubuntu-debian-linux-server-install-keychain-apt-get-command/)
@@ -75,16 +75,16 @@ link to our GitHub/GitLab. There is a very easy way to do this in our terminals.
 ## Setting Up Your SSH Config
 
 This is the most important part when it comes to managing multiple keys. Your 
-ssh config will tell your ssh client where it should be looking for your ssh 
+ssh config will tell your SSH client where it should be looking for your SSH 
 keys, and which key it should be using.
 
-If you have multiple ssh keys, or if you have a single key and changed the name 
-or location of that key, you will need a ssh config to fix some issues you will 
+If you have multiple SSH keys, or if you have a single key and changed the name 
+or location of that key, you will need a SSH config to fix some issues you will 
 have.
 
-1. Create an ssh config file
+1. Create an SSH config file
 
-> Move to your ssh directory and create a config file
+> Move to your .ssh directory and create a config file.
 > ```bash
 > cd ~/.ssh && touch config
 > ```
@@ -114,22 +114,22 @@ have.
 > Make sure you change up the file to work for you. Host can be anything you 
 > want (it should easily identify what host you are using and what work you are 
 > doing). Hostname should always be the website you are connecting to. Identity 
-> file should point to the ssh private key file name you are going to use.
+> file should point to the SSH private key file name you are going to use.
 > 
-> In the `Cloning a Repo` Section, it should make sense how we can connect 
+> In the **Clone Your Repo** Section, it should make sense how we can connect 
 > different repos to different keys. It is very important to realize that this 
-> ssh config file is telling your ssh client which key it should be looking for 
+> SSH config file is telling your SSH client which key it should be looking for 
 > every time its setting up a connection from a certain host.
 
 ## Connecting Your SSH Keys
 
 You will need to add your public key to the host you are trying to connect to 
-(Github/GitLab). This allows the host to connect with your machine through ssh 
-in a very secure way. Connecting your ssh key is very simple.
+(GitHub/GitLab). This allows the host to connect with your machine through SSH 
+in a very secure way. Connecting your SSH key is very simple.
 
 ### GitHub SSH Connection
 
-1. Copy the SSH key to your clipboard
+1. Copy the SSH key to your clipboard.
 
 > You will need to copy your public key (NOT YOUR PRIVATE KEY!). Copy the 
 > example code, and make sure to point to the correct public key.
@@ -205,8 +205,8 @@ value.
 
 ### Test Your SSH Connection
 
-You should test your ssh connection before trying to clone your repository. 
-Here are some links that tell you how you can test your ssh connection:
+You should test your SSH connection before trying to clone your repository. 
+Here are some links that tell you how you can test your SSH connection:
 
 - [Test your SSH connection with GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 - [Test your SSH connection with GitLab](https://docs.gitlab.com/ee/user/ssh.html#verify-that-you-can-connect)
@@ -214,13 +214,13 @@ Here are some links that tell you how you can test your ssh connection:
 ## Clone Your Repo
 
 This is where our config will start to make sense. When you usually clone your 
-repo to your machine locally, you can just copy the ssh URL. Well now we have 
+repo to your machine locally, you can just copy the SSH URL. Well now we have 
 to change up the URL just a bit. 
 
 Below are examples of each part of the config, and how you would clone a repo 
-for each ssh key:
+for each SSH key:
 
-1. Personal ssh key (GitHub)
+1. Personal SSH key (GitHub)
 
 > Config:
 > ```conf
@@ -233,10 +233,10 @@ for each ssh key:
 >
 > Git clone:
 > ```bash
-> git clone git@github.com:work-profile/repo.git
+> git clone git@github.com:profile/repo.git
 > ```
 
-2. Work ssh key (GitHub)
+2. Work SSH key (GitHub)
 
 > Config: 
 > ```conf
@@ -252,7 +252,7 @@ for each ssh key:
 > git clone git@work.github.com:work-profile/repo.git
 > ```
 
-3. Work ssh key (GitLab)
+3. Work SSH key (GitLab)
 
 > Config: 
 > ```conf
@@ -270,8 +270,8 @@ for each ssh key:
 
 ## Summary
 
-It is actually suprisingly easy to get this all set up. You create your ssh 
-key, set up an ssh config, connect your public key to the host, and clone your 
+It is actually surprisingly easy to get this all set up. You create your SSH 
+key, set up an SSH config, connect your public key to the host, and clone your 
 repo. If there are any concepts I didn't really touch up on, there are tons of 
 great resources that go much more in depth than I did. The intention of this 
-was to get you a quick way to get your ssh keys set up in a simple way.
+was to get you a quick way to get your SSH keys set up in a simple way.
